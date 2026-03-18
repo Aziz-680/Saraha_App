@@ -1,9 +1,6 @@
 import mongoose from "mongoose";
 import envConfig from './../config/env.config.js';
 
-console.log({envConfig});
-
-
 const database = envConfig.database;
 
 

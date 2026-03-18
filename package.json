@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node .",
-    "dev": "cross-env NODE_ENV=development nodemon .",
+    "dev": "cross-env NODE_ENV=dev nodemon .",
     "prod": "cross-env NODE_ENV=production node ."
   },
   "keywords": [],
