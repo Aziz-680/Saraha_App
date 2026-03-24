@@ -1,4 +1,4 @@
-import './config/env.config.js'
+import './config/env.config.js';
 import express from "express";
 import envConfig from './config/env.config.js';
 import dbConnection from './DB/db.connection.js';
@@ -11,8 +11,9 @@ const app = express();
 const port = envConfig.app.PORT
 
 dbConnection();
-// put routers here 
+app.use(express.json());
 
+// Controllers 
 app.use('/api/auth', controllers.authController);
 app.use('/api/msg', controllers.msgController);
 app.use('/api/user', controllers.userController);
