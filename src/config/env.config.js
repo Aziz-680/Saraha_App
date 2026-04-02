@@ -11,7 +11,8 @@ const envConfig = {
         MONGO_URL:process.env.MONGO_URL
     },
     encryption:{
-        ENCRYPTION_KEY: process.env.ENCRYPTION_KEY ?? 'default-encryption-key'
+        ENCRYPTION_KEY: process.env.ENC_KEY,
+        IV_LENGTH: process.env.ENC_IV_LENGTH
     }
 };
 

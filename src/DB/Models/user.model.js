@@ -42,9 +42,9 @@ const userSchema = new mongoose.Schema({
         enum:Object.values(STATUS),
         default:STATUS.ACTIVE
     },
-    Phone: { 
+    phoneNumber: { 
         type: String,
-        required: false
+        required: true
     },
     age: {
         type: Number,
@@ -53,7 +53,8 @@ const userSchema = new mongoose.Schema({
     }
 }, {
     toJSON:{getters:true},
-    toObject:{getters:true}
+    toObject:{getters:true},
+    timestamps:true
 });
 
 userSchema.virtual('fullName').get(function() {
