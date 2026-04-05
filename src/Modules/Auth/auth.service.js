@@ -1,5 +1,6 @@
 import {User} from "../../DB/Models/index.js"
-import { encrypt } from "../../Utils/encryption.utils.js";
+// import { encrypt, asymmetricEncryption , decrypt , asymmetricDecryption } from "../../Common/Security/encryption.js";
+import { encrypt, asymmetricEncryption , decrypt , asymmetricDecryption , hash} from "../../common/index.js";
 
 export const registerService = async (body) => {
     const { firstName, lastName, email, Password, gender, phone } = body;
@@ -14,12 +15,12 @@ export const registerService = async (body) => {
         firstName,
         lastName,
         email,
-        Password,
+        Password:hashedPasswod,
         gender
     };
 
     if(phone){
-        userObject.phoneNumber = encrypt(phone);
+        userObject.phoneNumber = asymmetricEncryption(phone);
     }
 
     return User.create(userObject);

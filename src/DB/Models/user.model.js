@@ -1,48 +1,48 @@
 import { mongoose } from 'mongoose';
-import { GENDER, STATUS, USER_ROLES } from '../../Utils/index.js';
+import { GENDER, STATUS, USER_ROLES } from '../../common/constants.js';
 
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
-        trim:true,
-        minLength:[3, 'First Name Must Be At Least 3 Characters Long.'],
-        maxLength:[50, 'Last Name Must Be Less Than 50 Characters Long.']
+        trim: true,
+        minLength: [3, 'First Name Must Be At Least 3 Characters Long.'],
+        maxLength: [50, 'Last Name Must Be Less Than 50 Characters Long.']
     },
     lastName: {
         type: String,
         required: true,
-        trim:true,
-        minLength:[3, 'First Name Must Be At Least 3 Characters Long.'],
-        maxLength:[50, 'Last Name Must Be Less Than 50 Characters Long.']
+        trim: true,
+        minLength: [3, 'First Name Must Be At Least 3 Characters Long.'],
+        maxLength: [50, 'Last Name Must Be Less Than 50 Characters Long.']
 
     },
     email: {
         type: String,
         required: true,
-        index:{
-            name:'email_unique',
-            unique:true
+        index: {
+            name: 'email_unique',
+            unique: true
         }
     },
-    Password: { 
+    Password: {
         type: String,
         required: true
     },
-    role:{
-        type:String,
-        enum:Object.values(USER_ROLES)
+    role: {
+        type: String,
+        enum: Object.values(USER_ROLES)
     },
-    gender:{
-        type:String,
-        enum:Object.values(GENDER)
+    gender: {
+        type: String,
+        enum: Object.values(GENDER)
     },
-    status:{
-        type:String,
-        enum:Object.values(STATUS),
-        default:STATUS.ACTIVE
+    status: {
+        type: String,
+        enum: Object.values(STATUS),
+        default: STATUS.ACTIVE
     },
-    phoneNumber: { 
+    phoneNumber: {
         type: String,
         required: true
     },
@@ -52,15 +52,15 @@ const userSchema = new mongoose.Schema({
         max: [60, 'Age cannot exceed 60']
     }
 }, {
-    toJSON:{getters:true},
-    toObject:{getters:true},
-    timestamps:true
+    toJSON: { getters: true },
+    toObject: { getters: true },
+    timestamps: true
 });
 
-userSchema.virtual('fullName').get(function() {
+userSchema.virtual('fullName').get(function () {
     return this.firstName + ' ' + this.lastName;
 })
 
-const User =  mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema)
 
 export default User

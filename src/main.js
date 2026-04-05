@@ -4,8 +4,8 @@ import envConfig from './config/env.config.js';
 import dbConnection from './DB/db.connection.js';
 import {globalErrorHandler} from './Middlewares/index.js';
 import * as controllers from './Modules/index.js';
-import crypto from 'node:crypto';
-import { encrypt } from './Utils/encryption.utils.js';
+
+import { encrypt , decrypt } from './Common/Security/encryption.js';
 
 const app = express();
 
@@ -25,4 +25,5 @@ app.use(globalErrorHandler);
 app.listen(port, () => {
     console.log(`Server is ON at port ${port}`);
 });
+
 
