@@ -5,7 +5,7 @@ export const getProfileService = async (id) => {
     const user = await User.findById(id)
 
     if (user.phoneNumber){
-        user.phoneNumber = asymmetricDecryption(user.phoneNumber)
+        user.phoneNumber = decrypt(user.phoneNumber)
     }
 
     return user
