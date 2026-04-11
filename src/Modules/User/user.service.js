@@ -1,16 +1,13 @@
+const jwtSecrets = envConfig.jwt
+
+import envConfig from "../../config/env.config.js";
 import { userRepo } from "../../DB/Repos/user.repo.js"
-import { encrypt, asymmetricEncryption , decrypt , asymmetricDecryption } from "../../Common/Security/encryption.js";
+import { encrypt, decrypt, decodeToken } from "../../Common/index.js";
 
-export const getProfileService = async (id) => {
-    const user = await userRepo.findById(id);
+// 1. GET ONE USER DECODED + TOKENIZED
+export const getProfileService = async (headers) => {
 
-    if (!user) {
-        throw new Error("User not found");
-    }
+    const accessToken = headers.authorization
 
-    if (user.phoneNumber){
-        user.phoneNumber = decrypt(user.phoneNumber)
-    }
-
-    return user
+    return decodeToken({ token: accessToken })
 }

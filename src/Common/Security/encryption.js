@@ -54,32 +54,32 @@ if (fs.existsSync('publicKey.pem') && fs.existsSync('privateKey.pem')) {
     fs.writeFileSync('privateKey.pem', privateKey)
 }
 
-export const asymmetricEncryption = (text) => {
-    const publicKey = fs.readFileSync('publicKey.pem', 'utf-8')
+// export const asymmetricEncryption = (text) => {
+//     const publicKey = fs.readFileSync('publicKey.pem', 'utf-8')
 
-    const bufferedText = Buffer.from(text)
+//     const bufferedText = Buffer.from(text)
 
-    const encryptedData = crypto.publicEncrypt(
-        {
-            key: publicKey,
-            padding: crypto.constants.RSA_PKCS1_OAEP_PADDING
-        }, bufferedText
-    )
+//     const encryptedData = crypto.publicEncrypt(
+//         {
+//             key: publicKey,
+//             padding: crypto.constants.RSA_PKCS1_OAEP_PADDING
+//         }, bufferedText
+//     )
 
-    return encryptedData.toString('hex')
-}
+//     return encryptedData.toString('hex')
+// }
 
-export const asymmetricDecryption = (text) => {
-    const privateKey = fs.readFileSync('privateKey.pem', 'utf-8')
+// export const asymmetricDecryption = (text) => {
+//     const privateKey = fs.readFileSync('privateKey.pem', 'utf-8')
 
-    const buffer = Buffer.from(text, 'hex')
+//     const buffer = Buffer.from(text, 'hex')
 
-    const decryptedData = crypto.privateDecrypt(
-        {
-            key: privateKey,
-            padding: crypto.constants.RSA_PKCS1_OAEP_PADDING
-        }, buffer
-    )
+//     const decryptedData = crypto.privateDecrypt(
+//         {
+//             key: privateKey,
+//             padding: crypto.constants.RSA_PKCS1_OAEP_PADDING
+//         }, buffer
+//     )
 
-    return decryptedData.toString('utf-8')
-}
+//     return decryptedData.toString('utf-8')
+// }
