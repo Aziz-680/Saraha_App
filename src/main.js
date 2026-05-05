@@ -6,6 +6,7 @@ import {globalErrorHandler} from './Middlewares/index.js';
 import * as controllers from './Modules/index.js';
 
 import { encrypt , decrypt } from './Common/Security/encryption.js';
+import { NotFoundException } from './Common/index.js';
 
 const app = express();
 
@@ -19,6 +20,14 @@ app.use('/api/auth', controllers.authController);
 app.use('/api/msg', controllers.msgController);
 app.use('/api/user', controllers.userController);
 
+app.get('/' , (req,res) => {
+    res.send('Saraha App is Running ✅')
+})
+
+app.use(
+    (req,res , next) => {
+    throw new NotFoundException('This Router is not Found', {path: req.path})
+})
 
 app.use(globalErrorHandler);
 

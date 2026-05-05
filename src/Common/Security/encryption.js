@@ -35,24 +35,24 @@ export const decrypt = (inputCipher) => {
     return decrypted
 }
 
-if (fs.existsSync('publicKey.pem') && fs.existsSync('privateKey.pem')) {
-    console.log('Key Already Generated');
-} else {
-    const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
-        modulusLength: 4096,
-        publicKeyEncoding: {
-            type: 'pkcs1',
-            format: 'pem'
-        },
-        privateKeyEncoding: {
-            type: 'pkcs1',
-            format: 'pem'
-        }
-    })
+// if (fs.existsSync('publicKey.pem') && fs.existsSync('privateKey.pem')) {
+//     console.log('Key Already Generated');
+// } else {
+//     const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
+//         modulusLength: 4096,
+//         publicKeyEncoding: {
+//             type: 'pkcs1',
+//             format: 'pem'
+//         },
+//         privateKeyEncoding: {
+//             type: 'pkcs1',
+//             format: 'pem'
+//         }
+//     })
 
-    fs.writeFileSync('publicKey.pem', publicKey)
-    fs.writeFileSync('privateKey.pem', privateKey)
-}
+//     fs.writeFileSync('publicKey.pem', publicKey)
+//     fs.writeFileSync('privateKey.pem', privateKey)
+// }
 
 // export const asymmetricEncryption = (text) => {
 //     const publicKey = fs.readFileSync('publicKey.pem', 'utf-8')

@@ -9,7 +9,12 @@ authController.post('/register', async (req,res) => {
 
 authController.post('/login', async (req,res) => {
     const result = await authService.loginService(req.body);
-    res.status(201).json({message:"User Logged in Successfully", accessToken:result});
+    res.status(200).json({message:"User Logged in Successfully", ...result});
+});
+
+authController.post('/retoken', async (req,res) => {
+    const result = await authService.refreshTokenService(req.headers);
+    res.status(200).json({message:"Token Refreshed", ...result});
 });
 
 

@@ -19,9 +19,12 @@ export class BaseRepository {
         return await this.model.findOne(filter);
     }
 
-    async update(id, data) {
-        // { new: true } ensures Mongoose returns the updated document, not the old one
-        return await this.model.findByIdAndUpdate(id, data, { new: true });
+    update({filter , data , options}) {
+        return  this.model.updateOne(filter , data , options);
+    }
+
+    updateById({id, data , options}) {
+        return  this.model.findByIdAndUpdate(id, data , options);
     }
 
     async delete(id) {

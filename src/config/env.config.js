@@ -17,11 +17,15 @@ const envConfig = {
     jwt: {
         admin: {
             accessSignature: process.env.JWT_ACCESS_SECRET_ADMIN,
-            accessExpiration: process.env.JWT_ACCESS_EXP_ADMIN
+            accessExpiration: process.env.JWT_ACCESS_EXP_ADMIN,
+            refreshSignature: process.env.JWT_REFRESH_SECRET_ADMIN,
+            refreshExpiration: process.env.JWT_REFRESH_EXP_ADMIN
         },
         user: {
             accessSignature: process.env.JWT_ACCESS_SECRET_USER,
-            accessExpiration: process.env.JWT_ACCESS_EXP_USER
+            accessExpiration: process.env.JWT_ACCESS_EXP_USER,
+            refreshSignature: process.env.JWT_REFRESH_SECRET_USER,
+            refreshExpiration: process.env.JWT_REFRESH_EXP_USER
         }
     }
 };
