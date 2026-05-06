@@ -1,12 +1,23 @@
-const reqKeys = ['body', 'query', 'params', 'headers']
+import { BadRequestException } from "../Common/index.js";
 
 const valdidation = (schema) => {
     return (req, res, next) => {
 
+        const valdidationErrors = []
+
         for (const key in schema) {
-            console.log({ key, reqSchema: schema[key] });
+            const { error } = schema[key].validate(req[key], { abortEarly: false })
+
+            if (error) {
+                valdidationErrors.push(error.details.map(({ message }) => message))
+            }
         }
 
+        if (valdidationErrors.length) {
+            throw new BadRequestException('Validaion error', { validationErrors: valdidationErrors.flat() })
+        }
+
+        next()
     }
 }
 

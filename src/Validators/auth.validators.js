@@ -8,5 +8,8 @@ export const registerSchema = {
         password: Joi.string().min(6).required(),
         gender:Joi.string().valid('male', 'female').required(),
         phone: Joi.string().required(),
+    }),
+    query: Joi.object({
+        test: Joi.string().required(),
     })
 }
