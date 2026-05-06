@@ -9,7 +9,7 @@ const valdidation = (schema) => {
             const { error } = schema[key].validate(req[key], { abortEarly: false })
 
             if (error) {
-                valdidationErrors.push(error.details.map(({ message }) => message))
+                valdidationErrors.push(error.details.map((err) => err))
             }
         }
 

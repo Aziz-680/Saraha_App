@@ -1,15 +1,20 @@
 import Joi from "joi";
+import { GENDER } from "../Common/index.js";
 
 export const registerSchema = {
     body: Joi.object({
-        firstName: Joi.string().min(2).max(50).required(),
+        firstName: Joi.string().alphanum().required(),
         lastName: Joi.string().min(2).max(50).required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().min(6).required(),
-        gender:Joi.string().valid('male', 'female').required(),
-        phone: Joi.string().required(),
-    }),
-    query: Joi.object({
-        test: Joi.string().required(),
+        email: Joi.string().email({ tlds: { allow: ['com', 'org'] } }).required(),
+        password: Joi
+        .string()
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+        .required()
+        .messages({
+            'string.pattern.base':'Password must contain at least one uppercase letter, one lowercase letter',
+            'any.required':'Password cannot be empty'
+        }),
+        gender: Joi.string().valid(...Object.values(GENDER)).required(),
+        phone: Joi.string().length(11).required(),
     })
 }
