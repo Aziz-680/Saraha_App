@@ -51,7 +51,8 @@ const userSchema = new mongoose.Schema({
         type: Number,
         min: [18, 'Age must be at least 18'], // Must be between 18 and 60
         max: [60, 'Age cannot exceed 60']
-    }
+    },
+    profilePicture: String
 }, {
     toJSON: { getters: true },
     toObject: { getters: true },

@@ -1,6 +1,5 @@
 import { userRepo } from "../../DB/Repos/user.repo.js";
 
-// 1. GET ONE USER DECODED + TOKENIZED
 export const getProfileService =  (req) => {
 
     return req.user
@@ -28,4 +27,15 @@ export const updateUserProfile = async (user , body) => {
 
 export const getAllUsers = async () => {
     return userRepo.findAll({})
+}
+
+export const uploadProfilePicture = async ( user , file )=>{
+
+    if(!file || !file.path) throw new BadRequestException('File is required');
+
+    return UserRepository.updateWithFindById({
+        id: user._id,
+        data: { profilePicture: file.path },
+        options:{new:true}
+    });
 }

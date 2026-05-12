@@ -1,5 +1,4 @@
-import { BadRequestException } from "../Common/index.js";
-
+import { BadRequestExecption } from './../Common/Utils/Errors/exceptions.js';
 const valdidation = (schema) => {
     return (req, res, next) => {
 
@@ -14,7 +13,8 @@ const valdidation = (schema) => {
         }
 
         if (valdidationErrors.length) {
-            throw new BadRequestException('Validaion error', { validationErrors: valdidationErrors.flat() })
+            throw new BadRequestExecption('Validaion error', { validationErrors: valdidationErrors.flat() })
+            // throw new BadRequestExecption('Validaion error', { validationErrors: valdidationErrors.flat() })
         }
 
         next()

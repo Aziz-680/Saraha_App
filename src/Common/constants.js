@@ -16,4 +16,11 @@ export const STATUS = {
 export const TOKEN_TYPES = {
     ACCESS: 'access',
     REFRESH: 'refresh'
-}
+};
+
+
+export const fileExtensions = {
+    image: ['jpg', 'jpeg', 'png', 'gif'],
+    video: ['mp4', 'avi', 'mkv', 'mov'],
+    application: ['pdf', 'doc', 'docx']
+};

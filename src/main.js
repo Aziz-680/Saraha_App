@@ -4,9 +4,8 @@ import envConfig from './config/env.config.js';
 import dbConnection from './DB/db.connection.js';
 import {globalErrorHandler} from './Middlewares/index.js';
 import * as controllers from './Modules/index.js';
-
-import { encrypt , decrypt } from './Common/Security/encryption.js';
 import { NotFoundException } from './Common/index.js';
+import { encrypt , decrypt } from './Common/Security/encryption.js';
 
 const app = express();
 
@@ -14,6 +13,8 @@ const port = envConfig.app.PORT
 
 dbConnection();
 app.use(express.json());
+
+app.use('/uploads' , express.static('uploads'))
 
 // Controllers 
 app.use('/api/auth', controllers.authController);
